@@ -106,6 +106,8 @@ public:
         Impl::spinwait( m_exec->state() , ThreadsExec::Rendezvous );
       }
 
+      memory_fence();
+
       return ! m_team_rank_rev ;
     }
 
