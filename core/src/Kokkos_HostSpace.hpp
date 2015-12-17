@@ -282,8 +282,13 @@ struct DeepCopy<HostSpace,HostSpace,ExecutionSpace> {
     memcpy( dst , src , n );
   }
   DeepCopy( const ExecutionSpace& exec, void * dst , const void * src , size_t n ) {
+    // This should be a full fence
     exec.fence();
+
     memcpy( dst , src , n );
+
+    // This should be a store fence
+    exec.fence();
   }
 };
 
